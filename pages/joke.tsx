@@ -1,4 +1,5 @@
 import React from "react";
+import fetch from 'cross-fetch';
 import styles from '../styles/Home.module.css'
 
 const JokePage: React.FC<any> = ({ joke }) => {
