@@ -1,5 +1,5 @@
 import React from "react";
-import fetch from 'cross-fetch';
+import axios from 'axios';
 import styles from '../styles/Home.module.css'
 
 const JokePage: React.FC<any> = ({ joke }) => {
@@ -18,17 +18,18 @@ export const getServerSideProps = async () => {
   console.log('getServerSideProps')
 
   const url = 'https://v2.jokeapi.dev/joke/Any?type=single';
-  const res = await fetch(url, {
+  const res = await axios.get(url, {
     headers: {
       'Accept': 'application/json'
     }
   });
-  const data = await res.json();
-  console.log(data);
+
+  const { joke } = res.data;
+  console.log(res.data);
 
   return {
     props: {
-      joke: data.joke
+      joke
     },
   }
 }
